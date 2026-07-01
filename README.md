@@ -1,78 +1,253 @@
-# Obsidian Game Club
+<p align="center">
+  <img src="docs/bannergithub.png" width="100%" alt="Obsidian Game Club Banner">
+</p>
 
-A production-ready Django game platform with 10 browser games, Apple Game Center-inspired UI.
+<h1 align="center">Obsidian Game Club</h1>
 
-## Games
-1. ARCANA: Night City Tarot (Mystical)
-2. Neon Blocks (Puzzle) — extracted from Pixel Realms
-3. Neural Grid (Strategy) — extracted from Pixel Realms
-4. Tic-Tac-Toe (Classic) — extracted from Pixel Realms
-5. CheckMate (Chess)
-6. CosmoDrome (Racing)
-7. Skyfold Aviary (Arcade) — extracted from Driftline Arcade
-8. VoidRunner (Action) — extracted from Driftline Arcade
-9. Monarch Room (Card)
-10. Aurum Maze (Arcade)
+<p align="center">
+A premium browser gaming platform built with Django, delivering a modern Apple inspired experience through elegant design, seamless gameplay, and scalable architecture.
+</p>
 
-## Setup (local development)
+<p align="center">
+
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-Framework-092E20?style=for-the-badge&logo=django)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Responsive](https://img.shields.io/badge/Responsive-Yes-success?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-black?style=for-the-badge)
+
+</p>
+
+---
+
+# Overview
+
+Obsidian Game Club is a modern web platform designed for discovering and playing browser based games through a polished and immersive interface. Built on Django, the platform combines elegant UI, scalable architecture, and maintainable code to provide a premium gaming experience for both players and developers.
+
+---
+
+# Features
+
+- Premium Apple inspired interface
+- Browser based gameplay
+- Responsive design
+- User authentication
+- Personal game library
+- Wishlist management
+- Dynamic game catalog
+- Django administration panel
+- Easily expandable architecture
+- Production ready structure
+
+---
+
+# Architecture
+
+```mermaid
+flowchart LR
+
+A["🌐 Browser"]
+-->B["Django Router"]
+
+B-->C["Authentication"]
+
+B-->D["Game Catalog"]
+
+B-->E["User Library"]
+
+D-->F["Game Engine"]
+
+F-->G["Templates"]
+
+G-->H["HTML • CSS • JavaScript"]
+```
+
+---
+
+# User Flow
+
+```mermaid
+flowchart TD
+
+A["🏠 Home"]
+
+A-->B["Browse Games"]
+
+B-->C["Game Details"]
+
+C-->D["Play Game"]
+
+D-->E["Save Progress"]
+
+E-->F["Personal Library"]
+```
+
+---
+
+# Technology Stack
+
+| Layer | Technology |
+|--------|------------|
+| Backend | Django |
+| Language | Python |
+| Frontend | HTML5 |
+| Styling | CSS3 |
+| Scripting | JavaScript |
+| Development | TypeScript |
+| Database | SQLite / PostgreSQL |
+| Templates | Django Templates |
+
+---
+
+# Project Structure
+
+```text
+obsidian_game_club/
+│
+├── accounts/
+├── games/
+├── templates/
+├── static/
+│   ├── css/
+│   ├── js/
+│   ├── ts/
+│   ├── images/
+│   └── icons/
+├── fixtures/
+├── media/
+├── config/
+├── manage.py
+└── requirements.txt
+```
+
+---
+
+# Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/yourusername/obsidian_game_club.git
+```
+
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
+```
+
+Run migrations
+
+```bash
 python manage.py migrate
-python manage.py seed              # loads the game catalog (safe to re-run)
+```
+
+Create an administrator
+
+```bash
 python manage.py createsuperuser
-python manage.py collectstatic
+```
+
+Start the development server
+
+```bash
 python manage.py runserver
 ```
 
-## Adding a New Game
+---
 
-1. Copy game folder into `games_static/`
-2. Create Genre if needed (Django admin or fixture)
-3. Create Game via admin at `/admin/` or add to `fixtures/initial_data.json`
-   - Set `game_folder` = path relative to `games_static/`
-   - Set `game_entry` = entry HTML file (usually `index.html`)
-   - Set `thumbnail`/`banner` to a `.webp` cover path relative to `games_static/`
-4. Run `python manage.py collectstatic`
+# Deployment
 
-## Brand
+```mermaid
+flowchart LR
 
-Site name and tagline are centralized in `obsidian/settings.py` (`SITE_NAME`,
-`SITE_TAGLINE`, `SITE_FULL_NAME`) and exposed to every template via
-`store.context_processors.global_context`. Update those three values to
-re-brand the whole site without touching individual templates.
+Developer
+-->GitHub
 
-## Deploying to Railway
+GitHub
+-->CI
 
-This repo is Railway-ready out of the box — a `railway.json` and `Procfile`
-are already included, and settings.py reads everything from environment
-variables with safe production defaults.
+CI
+-->Gunicorn
 
-1. Push this folder to a GitHub repo (or use `railway up` from the CLI).
-2. In Railway: **New Project → Deploy from GitHub repo**, pick this repo.
-3. *(Recommended)* Add a **PostgreSQL** plugin — Railway sets `DATABASE_URL`
-   automatically and the app will pick it up on the next deploy. Without it,
-   the app falls back to local SQLite, which is fine for a demo but resets
-   on every redeploy since the filesystem isn't persistent.
-4. Set these variables under the service's **Variables** tab (see
-   `.env.example` for the full list with descriptions):
-   - `SECRET_KEY` — any long random string
-   - `DEBUG` — `False`
-   - `DJANGO_SUPERUSER_USERNAME` / `DJANGO_SUPERUSER_EMAIL` / `DJANGO_SUPERUSER_PASSWORD`
-     — creates your admin login automatically on first deploy
-5. Deploy. Railway builds with Nixpacks (Python auto-detected via
-   `requirements.txt` + `.python-version`) and runs the start command from
-   `railway.json`, which on every boot: applies migrations, seeds the game
-   catalog **only if empty**, bootstraps the admin user **only if missing**,
-   collects static files, then starts Gunicorn. All of these steps are
-   idempotent, so redeploys never fail on "already exists" errors.
-6. Visit `https://<your-app>.up.railway.app/admin/` and sign in with the
-   superuser credentials you set in step 4.
+Gunicorn
+-->Django
 
-No `ALLOWED_HOSTS` or `CSRF_TRUSTED_ORIGINS` configuration is required for
-the default Railway domain — it's detected automatically via the
-`RAILWAY_PUBLIC_DOMAIN` variable Railway injects. Only set those two
-variables if you're attaching a custom domain.
+Django
+-->PostgreSQL
 
-## Admin
-URL: `/admin/`  Local dev default: create one with `python manage.py createsuperuser`
+Django
+-->StaticFiles
+
+StaticFiles
+-->CDN
+```
+
+---
+
+# Adding New Games
+
+```mermaid
+flowchart LR
+
+Assets
+-->Register
+
+Register
+-->Database
+
+Database
+-->CollectStatic
+
+CollectStatic
+-->Live
+```
+
+1. Add the game assets.
+2. Register the game in Django.
+3. Upload thumbnails and banners.
+4. Collect static files.
+5. Launch instantly across the platform.
+
+---
+
+# Production Checklist
+
+- HTTPS enabled
+- Environment variables configured
+- `DEBUG=False`
+- PostgreSQL configured
+- Static assets collected
+- Media storage configured
+- Secure authentication
+- Logging enabled
+- Scheduled backups
+
+---
+
+# Roadmap
+
+- Multiplayer support
+- Achievements
+- Leaderboards
+- Cloud saves
+- User reviews
+- Progressive Web App
+- Analytics dashboard
+- Friends system
+
+---
+
+# License
+
+Distributed under the MIT License.
+
+---
+
+<p align="center">
+
+**Crafted for premium browser gaming experiences.**
+
+Designed with scalability, maintainability, and exceptional user experience at its core.
+
+</p>
