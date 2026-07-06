@@ -19,7 +19,7 @@ export const GAMES: Game[] = [
     reviewCount: 312,
     colorFrom: "#8B00FF",
     colorTo: "#FF006E",
-    thumbnail: `${import.meta.env.BASE_URL}covers/arcana.svg`,
+    thumbnail: `${import.meta.env.BASE_URL}covers/arcana.webp`,
     releaseDate: "2024-06-06",
     repoUrl: repo("nightCityDivination"),
     playUrl: pages("nightCityDivination"),
