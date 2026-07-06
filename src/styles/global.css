@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500&display=swap");
+@import "./tokens.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-bone);
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#root {
+  position: relative;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+.label-caps {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-silver);
+  font-weight: 400;
+}
+
+.container {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding-left: var(--edge);
+  padding-right: var(--edge);
+}
+
+/* Film grain overlay across the whole viewport */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+}
+
+/* Reveal from darkness */
+.reveal {
+  opacity: 0;
+  filter: blur(6px);
+  transform: translateY(18px);
+  transition: opacity var(--duration-slow) var(--ease-critical),
+    filter var(--duration-slow) var(--ease-critical),
+    transform var(--duration-slow) var(--ease-critical);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 120ms;
+}
+.reveal-delay-2 {
+  transition-delay: 240ms;
+}
+.reveal-delay-3 {
+  transition-delay: 360ms;
+}
+
+::selection {
+  background: var(--color-bone);
+  color: var(--color-bg);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-charcoal);
+  border-radius: 6px;
+}
+
+:focus-visible {
+  outline: 1px solid var(--color-bone-dim);
+  outline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+  .label-caps {
+    letter-spacing: 0.16em;
+  }
+}

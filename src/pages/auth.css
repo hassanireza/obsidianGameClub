@@ -1,0 +1,79 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 160px var(--edge) 100px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-card h1 {
+  font-size: clamp(28px, 4vw, 38px);
+  margin-top: 14px;
+}
+
+.auth-card__note {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--color-silver);
+  font-weight: 300;
+  line-height: 1.6;
+  border: 1px solid var(--color-hairline);
+  padding: 14px 16px;
+}
+
+.auth-form {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-field label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-silver);
+}
+
+.auth-field input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-hairline-strong);
+  color: var(--color-bone);
+  font-size: 15px;
+  font-weight: 300;
+  padding: 10px 2px;
+}
+
+.auth-field input:focus {
+  outline: none;
+  border-color: var(--color-bone);
+}
+
+.auth-form .btn {
+  margin-top: 12px;
+  width: 100%;
+  justify-content: center;
+}
+
+.auth-switch {
+  margin-top: 28px;
+  font-size: 13px;
+  color: var(--color-silver);
+}
+
+.auth-switch a {
+  color: var(--color-bone);
+  border-bottom: 1px solid var(--color-hairline-strong);
+}
